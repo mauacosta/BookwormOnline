@@ -3,7 +3,9 @@ package com.example.pruebafirebase;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -21,6 +23,10 @@ public class MainActivity extends AppCompatActivity {
     EditText mail, password;
     private FirebaseAuth mAuth;
 
+    public SharedPreferences prefs;
+    private static final String ARCHIVO_PREFS = "misPrefs";
+    private static final String KEY_NAME = "email";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         password = findViewById(R.id.editTextPassword);
 
         mAuth = FirebaseAuth.getInstance();
+        prefs = getSharedPreferences(ARCHIVO_PREFS, Context.MODE_PRIVATE);
     }
 
     public void abrirRegistro (View v){
@@ -69,6 +76,9 @@ public class MainActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
                     Toast.makeText(MainActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
+                    SharedPreferences.Editor editor = prefs.edit();
+                    editor.putString(KEY_NAME, mailStr);
+                    editor.apply();
                     Intent i = new Intent(MainActivity.this, HomeActivity.class);
                     startActivity(i);
                 }

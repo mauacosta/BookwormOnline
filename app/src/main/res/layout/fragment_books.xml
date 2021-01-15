@@ -50,7 +50,8 @@
                 android:layout_height="wrap_content"
                 android:padding="16dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvReadingTitle">
+                app:layout_constraintTop_toBottomOf="@+id/tvReadingTitle"
+                android:visibility="visible">
 
                 <ImageView
                     android:id="@+id/book1Cover"
@@ -85,6 +86,18 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tvBook1" />
 
+                <TextView
+                    android:id="@+id/tvYear1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:autoSizeMaxTextSize="136dp"
+                    android:fontFamily="@font/montserrat"
+                    android:text="1900"
+                    android:textColor="@color/lighter_black"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvAuthor1" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -93,7 +106,8 @@
                 android:layout_height="wrap_content"
                 android:padding="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvReadingTitle">
+                app:layout_constraintTop_toBottomOf="@+id/tvReadingTitle"
+                android:visibility="visible">
 
                 <ImageView
                     android:id="@+id/book2Cover"
@@ -128,6 +142,18 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tvBook2" />
 
+                <TextView
+                    android:id="@+id/tvYear2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:autoSizeMaxTextSize="136dp"
+                    android:fontFamily="@font/montserrat"
+                    android:text="1920"
+                    android:textColor="@color/lighter_black"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvAuthor2" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -136,7 +162,8 @@
                 android:layout_height="wrap_content"
                 android:padding="16dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/BookLayout1">
+                app:layout_constraintTop_toBottomOf="@+id/BookLayout1"
+                android:visibility="visible">
 
                 <ImageView
                     android:id="@+id/book3Cover"
@@ -170,6 +197,18 @@
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tvBook3" />
+
+                <TextView
+                    android:id="@+id/tvYear3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:autoSizeMaxTextSize="136dp"
+                    android:fontFamily="@font/montserrat"
+                    android:text="1950"
+                    android:textColor="@color/lighter_black"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvAuthor3" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

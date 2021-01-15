@@ -89,13 +89,14 @@
         app:layout_constraintTop_toBottomOf="@id/tvYearLabel"/>
 
     <Button
+        android:id="@+id/btnSave"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Save book"
-        app:layout_constraintTop_toBottomOf="@id/etYear"
-        app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="24dp"
+        android:onClick="saveBook"
+        android:text="Save book"
 
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/etYear" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -23,6 +23,8 @@ public class HomeFragment extends Fragment {
     public SharedPreferences prefs;
     private static final String ARCHIVO_PREFS = "misPrefs";
     private static final String KEY_NAME = "nombre";
+    private static final String KEY_MAIL = "email";
+    private String mailStr;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -34,7 +36,8 @@ public class HomeFragment extends Fragment {
 
         welcomeText = root.findViewById(R.id.tvHomeTitle);
 
-        welcomeText.setText("Welcome " + prefs.getString(KEY_NAME, "Reader"));
+        mailStr = prefs.getString(KEY_MAIL, "Reader");
+        welcomeText.setText("Welcome " + prefs.getString(KEY_NAME, mailStr));
 
         return root;
     }
