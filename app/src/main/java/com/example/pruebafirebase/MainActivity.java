@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
     public SharedPreferences prefs;
     private static final String ARCHIVO_PREFS = "misPrefs";
-    private static final String KEY_NAME = "email";
+    private static final String KEY_MAIL = "email";
 
 
     @Override
@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     Toast.makeText(MainActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
                     SharedPreferences.Editor editor = prefs.edit();
-                    editor.putString(KEY_NAME, mailStr);
+                    editor.putString(KEY_MAIL, mailStr);
                     editor.apply();
                     Intent i = new Intent(MainActivity.this, HomeActivity.class);
                     startActivity(i);

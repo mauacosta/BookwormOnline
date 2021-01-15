@@ -41,7 +41,7 @@
         android:layout_height="wrap_content"
         android:autoSizeMaxTextSize="400dp"
         android:fontFamily="@font/montserrat_bold"
-        android:text="Change Name"
+        android:text="Change Name In Device"
         android:textColor="@color/lighter_black"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"

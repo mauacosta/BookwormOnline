@@ -19,6 +19,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+
             android:paddingBottom="200dp">
 
             <ImageButton
@@ -48,10 +49,11 @@
                 android:id="@+id/BookLayout1"
                 android:layout_width="160dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 android:padding="16dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvReadingTitle"
-                android:visibility="visible">
+                android:visibility="invisible">
 
                 <ImageView
                     android:id="@+id/book1Cover"
@@ -90,7 +92,6 @@
                     android:id="@+id/tvYear1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:autoSizeMaxTextSize="136dp"
                     android:fontFamily="@font/montserrat"
                     android:text="1900"
                     android:textColor="@color/lighter_black"
@@ -104,10 +105,11 @@
                 android:id="@+id/BookLayout2"
                 android:layout_width="160dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 android:padding="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvReadingTitle"
-                android:visibility="visible">
+                android:visibility="invisible">
 
                 <ImageView
                     android:id="@+id/book2Cover"
@@ -160,10 +162,11 @@
                 android:id="@+id/BookLayout3"
                 android:layout_width="160dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 android:padding="16dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/BookLayout1"
-                android:visibility="visible">
+                android:visibility="invisible">
 
                 <ImageView
                     android:id="@+id/book3Cover"

@@ -24,9 +24,9 @@ import java.util.ArrayList;
 public class BooksFragment extends Fragment {
 
     private BooksViewModel booksViewModel;
-    TextView title1, title2, title3, author1, author2, author3, year1, year2,year3;
+    TextView title, title1, title2, title3, author1, author2, author3, year1, year2,year3;
 
-    //ConstraintLayout layout1, layout2, layout3;
+    ConstraintLayout layout1, layout2, layout3;
 
     DbHelper db;
     public SharedPreferences prefs;
@@ -44,11 +44,16 @@ public class BooksFragment extends Fragment {
         prefs = getActivity().getSharedPreferences(ARCHIVO_PREFS, Context.MODE_PRIVATE);
         String mailStr = prefs.getString(KEY_MAIL, "@");
 
+        title = root.findViewById(R.id.tvReadingTitle);
+        title.setText("Add your first book -->");
 
         books = new ArrayList<Book>();
         books = db.search(mailStr);
 
         if(0 < books.size()){
+            title.setText("Reading now");
+            layout1 = root.findViewById(R.id.BookLayout1);
+            layout1.setVisibility(View.VISIBLE);
             title1 = root.findViewById(R.id.tvBook1);
             author1 = root.findViewById(R.id.tvAuthor1);
             year1 = root.findViewById(R.id.tvYear1);
@@ -58,6 +63,8 @@ public class BooksFragment extends Fragment {
         }
 
         if(1 < books.size()){
+            layout2 = root.findViewById(R.id.BookLayout2);
+            layout2.setVisibility(View.VISIBLE);
             title2 = root.findViewById(R.id.tvBook2);
             author2 = root.findViewById(R.id.tvAuthor2);
             year2 = root.findViewById(R.id.tvYear2);
@@ -67,6 +74,8 @@ public class BooksFragment extends Fragment {
         }
 
         if(2 < books.size()){
+            layout3 = root.findViewById(R.id.BookLayout3);
+            layout3.setVisibility(View.VISIBLE);
             title3 = root.findViewById(R.id.tvBook3);
             author3 = root.findViewById(R.id.tvAuthor3);
             year3 = root.findViewById(R.id.tvYear3);
