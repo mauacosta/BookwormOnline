@@ -3,6 +3,7 @@ package com.example.pruebafirebase;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.DownloadManager;
@@ -55,7 +56,7 @@ public class SearchBook extends AppCompatActivity implements Handler.Callback, V
 
             JSONArray data = (JSONArray) msg.obj;
 
-            for(int i = 0; (i<data.length());i++){
+            for(int i = 0; ((i < 10) && (i < data.length())); i++){
                 JSONObject temp = data.getJSONObject(i);
                 String thisTitle, thisAuthor, thisYear;
                 String jSONTitleValue = temp.get("title").toString();
@@ -85,10 +86,10 @@ public class SearchBook extends AppCompatActivity implements Handler.Callback, V
                 Log.wtf("REQUEST", books.get(i).year);
 
                 SearchBookAdapter adapter = new SearchBookAdapter(books, this);
-                GridLayoutManager glm = new GridLayoutManager(this, 2);
-                glm.setOrientation(GridLayoutManager.VERTICAL);
+                LinearLayoutManager llm = new LinearLayoutManager(this);
+                llm.setOrientation(GridLayoutManager.VERTICAL);
 
-                recyclerView.setLayoutManager(glm);
+                recyclerView.setLayoutManager(llm);
                 recyclerView.setAdapter(adapter);
 
 
@@ -99,8 +100,26 @@ public class SearchBook extends AppCompatActivity implements Handler.Callback, V
         return true;
     }
 
+
     @Override
     public void onClick(View v) {
+        int pos = recyclerView.getChildLayoutPosition(v);
+        Book thisBook = books.get(pos);
+        Intent intent = new Intent(this, BookShowcase.class);
+        intent.putExtra("Title", thisBook.title);
 
+        intent.putExtra("Author", thisBook.author);
+
+        intent.putExtra("Year", thisBook.year);
+
+        intent.putExtra("ImgId", thisBook.imgId);
+
+        intent.putExtra("Subject", thisBook.subject);
+
+        intent.putExtra("Language", thisBook.language);
+
+        intent.putExtra("AmazonId", thisBook.amazonId);
+
+        startActivity(intent);
     }
 }

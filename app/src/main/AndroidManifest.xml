@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BookWorm">
-        <activity android:name=".AddBook"></activity>
+        <activity android:name=".BookShowcase"></activity>
+        <activity android:name=".AddBook" />
         <activity android:name=".SearchBook" />
         <activity android:name=".HomeActivity" />
         <activity android:name=".RegistroActivity" />
