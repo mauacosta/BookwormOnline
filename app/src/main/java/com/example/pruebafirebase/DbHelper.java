@@ -60,7 +60,7 @@ public class DbHelper extends SQLiteOpenHelper {
         Cursor c = db.query(TABLE, null, clause, params, null, null, null);
         ArrayList<Book> books = new ArrayList<Book>();
         while(c.moveToNext()){
-            Book b = new Book(c.getString(2), c.getString(3), c.getString(4));
+            Book b = new Book(c.getString(2), c.getString(3), c.getString(4), "", "","","");
             books.add(b);
         }
         return books;
