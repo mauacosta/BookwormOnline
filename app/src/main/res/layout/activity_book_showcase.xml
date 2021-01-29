@@ -79,14 +79,26 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/showSubject"/>
 
+    <TextView
+        android:id="@+id/showState"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reading Now"
+        android:fontFamily="@font/montserrat"
+        android:layout_marginTop="8dp"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/showLanguage"/>
+
     <Button
         android:id="@+id/bookBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Add Book"
         android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@id/showLanguage"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:onClick="addBook"
+        android:text="Add Book"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/showState" />
 
 
     <TextView

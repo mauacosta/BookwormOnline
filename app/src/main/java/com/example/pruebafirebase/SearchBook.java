@@ -52,6 +52,7 @@ public class SearchBook extends AppCompatActivity implements Handler.Callback, V
 
     @Override
     public boolean handleMessage(@NonNull Message msg) {
+
         try{
 
             JSONArray data = (JSONArray) msg.obj;
@@ -62,43 +63,43 @@ public class SearchBook extends AppCompatActivity implements Handler.Callback, V
                 try {
                     thisTitle = temp.get("title").toString();
                 }catch(Exception e){
-                    thisTitle = "";
+                    thisTitle = "-";
                 }
 
                 try{
                     thisAuthor = temp.getJSONArray("author_name").get(0).toString();
                 }catch(Exception e){
-                    thisAuthor = "";
+                    thisAuthor = "-";
                 }
 
                 try{
                     thisYear = temp.getJSONArray("publish_year").get(0).toString();
                 }catch(Exception e){
-                    thisYear = "";
+                    thisYear = "-";
                 }
 
                 try{
                     thisImg = temp.get("cover_i").toString();
                 }catch(Exception e){
-                    thisImg = "";
+                    thisImg = "-";
                 }
 
                 try{
                     thisSubject = temp.getJSONArray("subject").get(0).toString();
                 }catch(Exception e){
-                    thisSubject = "";
+                    thisSubject = "-";
                 }
 
                 try{
                     thisLang = temp.getJSONArray("language").get(0).toString();
                 }catch(Exception e){
-                    thisLang = "";
+                    thisLang = "-";
                 }
 
                 try{
                     thisAmzn = temp.getJSONArray("id_amazon").get(0).toString();
                 }catch(Exception e){
-                    thisAmzn = "";
+                    thisAmzn = "-";
                 }
 
                 Book thisBook = new Book(thisTitle, thisAuthor, thisYear, thisImg,thisSubject,thisLang,thisAmzn);
@@ -142,7 +143,9 @@ public class SearchBook extends AppCompatActivity implements Handler.Callback, V
 
         intent.putExtra("AmazonId", thisBook.amazonId);
 
-        intent.putExtra("state", "Add Book");
+        intent.putExtra("state", "");
+
+        intent.putExtra("stateVal", 0);
 
 
         startActivity(intent);

@@ -128,7 +128,9 @@ public class BooksFragment extends Fragment implements View.OnClickListener{
 
         intent.putExtra("AmazonId", thisBook.amazonId);
 
-        intent.putExtra("state", "Start Reading");
+        intent.putExtra("state", "To Read");
+
+        intent.putExtra("stateVal", 1);
 
         startActivity(intent);
     }
