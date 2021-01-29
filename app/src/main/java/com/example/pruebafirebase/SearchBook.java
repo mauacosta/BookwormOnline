@@ -58,32 +58,52 @@ public class SearchBook extends AppCompatActivity implements Handler.Callback, V
 
             for(int i = 0; ((i < 10) && (i < data.length())); i++){
                 JSONObject temp = data.getJSONObject(i);
-                String thisTitle, thisAuthor, thisYear;
-                String jSONTitleValue = temp.get("title").toString();
-                String jSONAuthorValue = temp.getJSONArray("author_name").get(0).toString();
-                String jSONYearValue = thisYear = temp.getJSONArray("publish_year").get(0).toString();
-
-                if(jSONTitleValue != null){
-                    thisTitle = jSONTitleValue;
-                }else{
+                String thisTitle, thisAuthor, thisYear, thisImg, thisSubject, thisLang, thisAmzn;
+                try {
+                    thisTitle = temp.get("title").toString();
+                }catch(Exception e){
                     thisTitle = "";
                 }
 
-                if(jSONAuthorValue != null){
-                    thisAuthor = jSONAuthorValue;
-                }else{
+                try{
+                    thisAuthor = temp.getJSONArray("author_name").get(0).toString();
+                }catch(Exception e){
                     thisAuthor = "";
                 }
 
-                if(jSONYearValue != null){
-                    thisYear = jSONYearValue;
-                }else{
+                try{
+                    thisYear = temp.getJSONArray("publish_year").get(0).toString();
+                }catch(Exception e){
                     thisYear = "";
                 }
 
-                Book thisBook = new Book(thisTitle, thisAuthor, thisYear, "","","","");
+                try{
+                    thisImg = temp.get("cover_i").toString();
+                }catch(Exception e){
+                    thisImg = "";
+                }
+
+                try{
+                    thisSubject = temp.getJSONArray("subject").get(0).toString();
+                }catch(Exception e){
+                    thisSubject = "";
+                }
+
+                try{
+                    thisLang = temp.getJSONArray("language").get(0).toString();
+                }catch(Exception e){
+                    thisLang = "";
+                }
+
+                try{
+                    thisAmzn = temp.getJSONArray("id_amazon").get(0).toString();
+                }catch(Exception e){
+                    thisAmzn = "";
+                }
+
+                Book thisBook = new Book(thisTitle, thisAuthor, thisYear, thisImg,thisSubject,thisLang,thisAmzn);
                 books.add(thisBook);
-                Log.wtf("REQUEST", books.get(i).year);
+
 
                 SearchBookAdapter adapter = new SearchBookAdapter(books, this);
                 LinearLayoutManager llm = new LinearLayoutManager(this);
@@ -99,6 +119,8 @@ public class SearchBook extends AppCompatActivity implements Handler.Callback, V
         }
         return true;
     }
+
+
 
 
     @Override
@@ -119,6 +141,9 @@ public class SearchBook extends AppCompatActivity implements Handler.Callback, V
         intent.putExtra("Language", thisBook.language);
 
         intent.putExtra("AmazonId", thisBook.amazonId);
+
+        intent.putExtra("state", "Add Book");
+
 
         startActivity(intent);
     }

@@ -1,6 +1,7 @@
 package com.example.pruebafirebase.ui.books;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
@@ -20,6 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pruebafirebase.AddBook;
 import com.example.pruebafirebase.Book;
+import com.example.pruebafirebase.BookShowcase;
 import com.example.pruebafirebase.DbHelper;
 import com.example.pruebafirebase.R;
 import com.example.pruebafirebase.SearchBookAdapter;
@@ -52,7 +54,7 @@ public class BooksFragment extends Fragment implements View.OnClickListener{
         String mailStr = prefs.getString(KEY_MAIL, "@");
 
         title = root.findViewById(R.id.tvReadingTitle);
-        title.setText("Add your first book -->");
+        //title.setText("Add your first book -->");
 
         books = new ArrayList<Book>();
         books = db.search(mailStr);
@@ -108,6 +110,26 @@ public class BooksFragment extends Fragment implements View.OnClickListener{
 
     @Override
     public void onClick(View v) {
+        int pos = recyclerView.getChildLayoutPosition(v);
+        Book thisBook = books.get(pos);
+        Intent intent = new Intent(this.getActivity(), BookShowcase.class);
 
+        intent.putExtra("Title", thisBook.title);
+
+        intent.putExtra("Author", thisBook.author);
+
+        intent.putExtra("Year", thisBook.year);
+
+        intent.putExtra("ImgId", thisBook.imgId);
+
+        intent.putExtra("Subject", thisBook.subject);
+
+        intent.putExtra("Language", thisBook.language);
+
+        intent.putExtra("AmazonId", thisBook.amazonId);
+
+        intent.putExtra("state", "Start Reading");
+
+        startActivity(intent);
     }
 }

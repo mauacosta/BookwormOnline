@@ -80,7 +80,7 @@
         app:layout_constraintTop_toBottomOf="@id/showSubject"/>
 
     <Button
-        android:id="@+id/showAddBtn"
+        android:id="@+id/bookBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Add Book"
@@ -96,7 +96,7 @@
         android:textSize="16sp"
         android:text="Look in Amazon"
         android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@id/showAddBtn"
+        app:layout_constraintTop_toBottomOf="@id/bookBtn"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
