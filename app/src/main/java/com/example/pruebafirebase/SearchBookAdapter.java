@@ -1,12 +1,14 @@
 package com.example.pruebafirebase;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -34,6 +36,7 @@ public class SearchBookAdapter extends RecyclerView.Adapter<SearchBookAdapter.Se
     private static final String ARCHIVO_PREFS = "misPrefs";
     private static final String KEY_MAIL = "email";
     private String emailStr;
+    private Context context;
 
     public SearchBookAdapter(ArrayList<Book> books, View.OnClickListener listener){
         this.books = books;
@@ -44,7 +47,8 @@ public class SearchBookAdapter extends RecyclerView.Adapter<SearchBookAdapter.Se
     @Override
     public SearchBookViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = (View) LayoutInflater.from(parent.getContext()).inflate(R.layout.search_element, parent, false);
-        db = new DbHelper(parent.getContext());
+        context = parent.getContext();
+        db = new DbHelper(context);
         prefs = parent.getContext().getSharedPreferences(ARCHIVO_PREFS, Context.MODE_PRIVATE);
         emailStr =  prefs.getString(KEY_MAIL, "@");
         v.setOnClickListener(listener);
@@ -59,6 +63,9 @@ public class SearchBookAdapter extends RecyclerView.Adapter<SearchBookAdapter.Se
             @Override
             public void onClick(View v) {
                 db.save(emailStr, books.get(position).title, books.get(position).author, books.get(position).year, books.get(position).imgId,books.get(position).subject, books.get(position).language, books.get(position).amazonId);
+                Toast.makeText(context, books.get(position).title + " Added", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(context, HomeActivity.class);
+                context.startActivity(i);
             }
         });
 

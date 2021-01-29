@@ -66,11 +66,11 @@
         app:layout_constraintTop_toBottomOf="@id/etChangeName" />
     <Button
         android:id="@+id/btnLogout"
-        android:layout_width="100dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="290dp"
+        android:layout_marginTop="16dp"
         android:text="Log Out"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnChangeName" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
