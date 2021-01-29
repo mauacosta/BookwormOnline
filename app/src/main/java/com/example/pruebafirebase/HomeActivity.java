@@ -1,5 +1,6 @@
 package com.example.pruebafirebase;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Fragment;
@@ -25,13 +26,20 @@ import androidx.navigation.ui.NavigationUI;
 import java.util.ArrayList;
 import com.example.pruebafirebase.R;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 public class HomeActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private DatabaseReference ref;
+    public String vUserId, vNombre;
+    public FirebaseDatabase database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,16 +60,42 @@ public class HomeActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navView, navController);
 
         mAuth = FirebaseAuth.getInstance();
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        database = FirebaseDatabase.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
 
-        ref = database.getReference(mAuth.getUid());
-        Log.wtf("USUARIO", mAuth.getCurrentUser().getEmail());
-        Log.wtf("USUARIO", ref.getKey());
+        vUserId = user.getUid();
+
+        ref = database.getReference("Usuarios/"+ user.getUid() + "/nombre");
+
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                vNombre = snapshot.getValue(String.class);
+                Toast.makeText(HomeActivity.this, "NUEVO VALOR: " + vNombre, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(HomeActivity.this, "ERROR EN LECTURA DE DB", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        Log.wtf("USUARIO", user.getEmail());
+
+        //writeNewBook(user.getUid(), "Titulo prueba", "Team 3", "2010", "123", "Fiction", "spanish", "123");
     }
 
     public void goToAddBook(View v){
         Intent i = new Intent(this, SearchBook.class);
         startActivity(i);
+    }
+
+    private void writeNewBook(String userId, String title, String author, String year, String imgId, String subject, String language, String amazonId) {
+        Book libro = new Book("Titulo prueba 4", "Team 3", "2010", "123", "Fiction", "spanish", "123");
+
+        ref = database.getReference("Usuarios/"+ userId);
+        //ref = database.getReference();
+        ref.child("misBooks").setValue(libro);
     }
 
 }
