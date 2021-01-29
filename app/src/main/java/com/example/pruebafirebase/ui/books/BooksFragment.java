@@ -3,6 +3,7 @@ package com.example.pruebafirebase.ui.books;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,20 +14,26 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pruebafirebase.AddBook;
 import com.example.pruebafirebase.Book;
 import com.example.pruebafirebase.DbHelper;
 import com.example.pruebafirebase.R;
+import com.example.pruebafirebase.SearchBookAdapter;
 
 import java.util.ArrayList;
 
-public class BooksFragment extends Fragment {
+public class BooksFragment extends Fragment implements View.OnClickListener{
 
     private BooksViewModel booksViewModel;
-    TextView title, title1, title2, title3, author1, author2, author3, year1, year2,year3;
+    TextView title;
+    private RecyclerView recyclerView;
+    //TextView title, title1, title2, title3, author1, author2, author3, year1, year2,year3;
 
-    ConstraintLayout layout1, layout2, layout3;
+    //ConstraintLayout layout1, layout2, layout3;
 
     DbHelper db;
     public SharedPreferences prefs;
@@ -50,7 +57,17 @@ public class BooksFragment extends Fragment {
         books = new ArrayList<Book>();
         books = db.search(mailStr);
 
-        if(0 < books.size()){
+        recyclerView = root.findViewById(R.id.recyclerViewMyBooks);
+
+        misLibrosAdapter adapter = new misLibrosAdapter(books, this);
+        LinearLayoutManager llm = new LinearLayoutManager(getActivity());
+        llm.setOrientation(GridLayoutManager.VERTICAL);
+
+        recyclerView.setLayoutManager(llm);
+        recyclerView.setAdapter(adapter);
+        //books = db.search(mailStr);
+
+        /*if(0 < books.size()){
             title.setText("Reading now");
             layout1 = root.findViewById(R.id.BookLayout1);
             layout1.setVisibility(View.VISIBLE);
@@ -84,7 +101,13 @@ public class BooksFragment extends Fragment {
             year3.setText(books.get(2).year);
         }
 
+         */
+
         return root;
     }
 
+    @Override
+    public void onClick(View v) {
+
+    }
 }

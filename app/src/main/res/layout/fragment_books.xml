@@ -6,15 +6,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white_500"
-    tools:context=".ui.books.BooksFragment"
     android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin">
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    tools:context=".ui.books.BooksFragment">
 
     <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:id="@+id/scrollView2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" >
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -24,12 +29,15 @@
 
             <ImageButton
                 android:id="@+id/imageButton"
-                android:layout_width="17dp"
-                android:layout_height="21dp"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginBottom="31dp"
                 android:background="@color/white_500"
                 android:contentDescription="Add Book Button"
                 android:onClick="goToAddBook"
+                app:layout_constraintBottom_toTopOf="@+id/recyclerViewMyBooks"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tvReadingTitle"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/add"
                 tools:ignore="OnClick" />
@@ -38,182 +46,26 @@
                 android:id="@+id/tvReadingTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="145dp"
                 android:fontFamily="@font/montserrat_bold"
                 android:text="Reading next"
                 android:textColor="@color/lighter_black"
                 android:textSize="32sp"
+                app:layout_constraintBottom_toTopOf="@+id/recyclerViewMyBooks"
+                app:layout_constraintEnd_toStartOf="@+id/imageButton"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/BookLayout1"
-                android:layout_width="160dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:padding="16dp"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewMyBooks"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginEnd="1dp"
+                android:layout_marginBottom="200dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/imageButton"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvReadingTitle"
-                android:visibility="invisible">
-
-                <ImageView
-                    android:id="@+id/book1Cover"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/placeholder"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/tvBook1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:autoSizeMaxTextSize="136dp"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:text="Lord of the rings"
-                    android:textColor="@color/lighter_black"
-                    android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/book1Cover" />
-
-                <TextView
-                    android:id="@+id/tvAuthor1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:autoSizeMaxTextSize="136dp"
-                    android:fontFamily="@font/montserrat"
-                    android:text="J.R.R. Tolkien"
-                    android:textColor="@color/lighter_black"
-                    android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tvBook1" />
-
-                <TextView
-                    android:id="@+id/tvYear1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat"
-                    android:text="1900"
-                    android:textColor="@color/lighter_black"
-                    android:textSize="12sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tvAuthor1" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/BookLayout2"
-                android:layout_width="160dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:padding="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvReadingTitle"
-                android:visibility="invisible">
-
-                <ImageView
-                    android:id="@+id/book2Cover"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/placeholder"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/tvBook2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:autoSizeMaxTextSize="136dp"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:text="Las batallas en el desierto"
-                    android:textColor="@color/lighter_black"
-                    android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/book2Cover" />
-
-                <TextView
-                    android:id="@+id/tvAuthor2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:autoSizeMaxTextSize="136dp"
-                    android:fontFamily="@font/montserrat"
-                    android:text="José Emilio Pacheco"
-                    android:textColor="@color/lighter_black"
-                    android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tvBook2" />
-
-                <TextView
-                    android:id="@+id/tvYear2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:autoSizeMaxTextSize="136dp"
-                    android:fontFamily="@font/montserrat"
-                    android:text="1920"
-                    android:textColor="@color/lighter_black"
-                    android:textSize="12sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tvAuthor2" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/BookLayout3"
-                android:layout_width="160dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:padding="16dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/BookLayout1"
-                android:visibility="invisible">
-
-                <ImageView
-                    android:id="@+id/book3Cover"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/placeholder"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/tvBook3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:autoSizeMaxTextSize="136dp"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:text="Animal Farm"
-                    android:textColor="@color/lighter_black"
-                    android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/book3Cover" />
-
-                <TextView
-                    android:id="@+id/tvAuthor3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:autoSizeMaxTextSize="136dp"
-                    android:fontFamily="@font/montserrat"
-                    android:text="George Orwell"
-                    android:textColor="@color/lighter_black"
-                    android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tvBook3" />
-
-                <TextView
-                    android:id="@+id/tvYear3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:autoSizeMaxTextSize="136dp"
-                    android:fontFamily="@font/montserrat"
-                    android:text="1950"
-                    android:textColor="@color/lighter_black"
-                    android:textSize="12sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tvAuthor3" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                app:layout_constraintTop_toBottomOf="@+id/imageButton" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
