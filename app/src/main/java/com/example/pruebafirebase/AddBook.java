@@ -35,7 +35,7 @@ public class AddBook extends AppCompatActivity {
         String strTitle = etTitle.getText().toString();
         String strAuthor = etAuthor.getText().toString();
         String strYear = etYear.getText().toString();
-        db.save(emailStr, strTitle, strAuthor, strYear);
+        db.save(emailStr, strTitle, strAuthor, strYear, "123", "123", "123", "123");
         Toast.makeText(AddBook.this, strTitle + " Agregado", Toast.LENGTH_SHORT).show();
         Intent i = new Intent(AddBook.this, HomeActivity.class);
         startActivity(i);

@@ -5,7 +5,6 @@ public class Book {
     public String author;
     public String year;
     public String imgId;
-
     public String subject;
     public String language;
     public String amazonId;
