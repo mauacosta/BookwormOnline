@@ -8,8 +8,9 @@ public class Book {
     public String subject;
     public String language;
     public String amazonId;
+    public int state;
 
-    public Book(String title, String author, String year, String imgId, String subject, String language, String amazonId){
+    public Book(String title, String author, String year, String imgId, String subject, String language, String amazonId, int state){
         this.title = title;
         this.author = author;
         this.year = year;
@@ -17,6 +18,15 @@ public class Book {
         this.subject = subject;
         this.language = language;
         this.amazonId = amazonId;
+        this.state = state;
+    }
+
+    public void finishReading(){
+        this.state = 0;
+    }
+
+    public void startReading(){
+        this.state = 2;
     }
 
 }

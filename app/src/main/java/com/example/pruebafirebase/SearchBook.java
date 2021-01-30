@@ -46,7 +46,7 @@ public class SearchBook extends AppCompatActivity implements Handler.Callback, V
         EditText searchInput = findViewById(R.id.searchET);
         String query = searchInput.getText().toString();
         String querySendable = query.replaceAll("\\s", "+");
-        SearchBookRequest request = new SearchBookRequest("http://openlibrary.org/search.json?q=" + querySendable, handler);
+        SearchBookRequest request = new SearchBookRequest("http://openlibrary.org/search.json?q=" + querySendable + "&page=1", handler);
         request.start();
     }
 
@@ -57,7 +57,7 @@ public class SearchBook extends AppCompatActivity implements Handler.Callback, V
 
             JSONArray data = (JSONArray) msg.obj;
 
-            for(int i = 0; ((i < 10) && (i < data.length())); i++){
+            for(int i = 0; ((i < 25) && (i < data.length())); i++){
                 JSONObject temp = data.getJSONObject(i);
                 String thisTitle, thisAuthor, thisYear, thisImg, thisSubject, thisLang, thisAmzn;
                 try {
@@ -102,7 +102,7 @@ public class SearchBook extends AppCompatActivity implements Handler.Callback, V
                     thisAmzn = "-";
                 }
 
-                Book thisBook = new Book(thisTitle, thisAuthor, thisYear, thisImg,thisSubject,thisLang,thisAmzn);
+                Book thisBook = new Book(thisTitle, thisAuthor, thisYear, thisImg,thisSubject,thisLang,thisAmzn, 1);
                 books.add(thisBook);
 
 

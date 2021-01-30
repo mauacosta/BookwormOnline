@@ -25,14 +25,14 @@
 
     <ImageView
         android:id="@+id/showImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/placeholder"
+        android:layout_width="128dp"
+        android:layout_height="192dp"
         android:layout_marginTop="8dp"
         android:textColor="@color/lighter_black"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/showTitle"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/showTitle"
+        app:srcCompat="@drawable/placeholder" />
 
     <TextView
         android:id="@+id/showAuthor"
@@ -95,7 +95,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:onClick="addBook"
+        android:onClick="writeBook"
         android:text="Add Book"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/showState" />

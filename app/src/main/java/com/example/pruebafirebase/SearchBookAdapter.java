@@ -13,6 +13,11 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 
 public class SearchBookAdapter extends RecyclerView.Adapter<SearchBookAdapter.SearchBookViewHolder> {
@@ -38,6 +43,12 @@ public class SearchBookAdapter extends RecyclerView.Adapter<SearchBookAdapter.Se
     private String emailStr;
     private Context context;
 
+    private String vUserId;
+    public FirebaseDatabase database;
+    private FirebaseAuth mAuth;
+    private DatabaseReference ref;
+
+
     public SearchBookAdapter(ArrayList<Book> books, View.OnClickListener listener){
         this.books = books;
         this.listener = listener;
@@ -59,13 +70,27 @@ public class SearchBookAdapter extends RecyclerView.Adapter<SearchBookAdapter.Se
 
     @Override
     public void onBindViewHolder(@NonNull SearchBookViewHolder holder, int position) {
+        mAuth = FirebaseAuth.getInstance();
+        database = FirebaseDatabase.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
+
+        vUserId = user.getUid();
+
         holder.addBook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                db.save(emailStr, books.get(position).title, books.get(position).author, books.get(position).year, books.get(position).imgId,books.get(position).subject, books.get(position).language, books.get(position).amazonId);
-                Toast.makeText(context, books.get(position).title + " Added", Toast.LENGTH_SHORT).show();
+                //db.save(emailStr, books.get(position).title, books.get(position).author, books.get(position).year, books.get(position).imgId,books.get(position).subject, books.get(position).language, books.get(position).amazonId);
+
+                Book libro = new Book(books.get(position).title, books.get(position).author, books.get(position).year, books.get(position).imgId, books.get(position).subject,books.get(position).language, books.get(position).amazonId, 1);
+
+                ref = database.getReference("Usuarios/"+ vUserId);
+                ref.child("misBooks/" + libro.title).setValue(libro);
+
+                Toast.makeText(context, libro.title + " Added To Books To Read", Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(context, HomeActivity.class);
                 context.startActivity(i);
+
+
             }
         });
 
