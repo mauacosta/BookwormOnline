@@ -52,7 +52,7 @@ public class AddBook extends AppCompatActivity {
         String strTitle = etTitle.getText().toString();
         String strAuthor = etAuthor.getText().toString();
         String strYear = etYear.getText().toString();
-        db.save(emailStr, strTitle, strAuthor, strYear, "", "", "", "");
+        db.save(emailStr, strTitle, strAuthor, strYear, "-", "-", "-", "-");
         Toast.makeText(AddBook.this, strTitle + " Agregado", Toast.LENGTH_SHORT).show();
         Intent i = new Intent(AddBook.this, HomeActivity.class);
         startActivity(i);
@@ -69,12 +69,12 @@ public class AddBook extends AppCompatActivity {
         String strAuthor = etAuthor.getText().toString();
         String strYear = etYear.getText().toString();
 
-        Book libro = new Book(strTitle, strAuthor, strYear, "", "","", "", 1);
+        Book libro = new Book(strTitle, strAuthor, strYear, "-", "-","-", "-", 1);
 
         ref = database.getReference("Usuarios/"+ vUserId);
         ref.child("misBooks/" + strTitle).setValue(libro);
 
-        Toast.makeText(AddBook.this, strTitle + "is in *Books To Read*", Toast.LENGTH_SHORT).show();
+        Toast.makeText(AddBook.this, strTitle + " is in *Books To Read*", Toast.LENGTH_SHORT).show();
         Intent i = new Intent(AddBook.this, HomeActivity.class);
         startActivity(i);
     }

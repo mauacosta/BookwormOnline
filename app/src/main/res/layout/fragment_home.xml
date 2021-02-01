@@ -48,67 +48,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvHomeTitle" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerMain"
         android:layout_width="match_parent"
-        android:layout_height="260dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:padding="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:paddingBottom="100dp"
+        android:background="@color/white_500"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvReadingNow">
-
-
-        <ImageView
-            android:id="@+id/bookCover"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/placeholder"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-
-            android:id="@+id/bookTitle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:autoSizeMaxTextSize="200dp"
-            android:fontFamily="@font/merriweather_bold"
-            android:text="Un Pequeño Empujón"
-            android:textColor="@color/lighter_black"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/bookCover"
-            app:layout_constraintTop_toTopOf="@id/bookCover" />
-
-        <TextView
-            android:id="@+id/tvAuthor"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:autoSizeMaxTextSize="200dp"
-            android:fontFamily="@font/montserrat_bold"
-            android:text="Cass R. Sunstein, Richard H. Thaler"
-            android:textColor="@color/lighter_black"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toTopOf="@id/tvYear"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/bookCover" />
-
-        <TextView
-            android:id="@+id/tvYear"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:fontFamily="@font/montserrat"
-            android:text="2008"
-            android:textColor="@color/lighter_black"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="@id/bookCover"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/bookCover" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        app:layout_constraintTop_toBottomOf="@+id/tvReadingNow" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

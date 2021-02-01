@@ -21,6 +21,8 @@ public class Book {
         this.state = state;
     }
 
+    public Book() {}
+
     public void finishReading(){
         this.state = 0;
     }

@@ -145,7 +145,7 @@ public class SearchBook extends AppCompatActivity implements Handler.Callback, V
 
         intent.putExtra("state", "");
 
-        intent.putExtra("stateVal", 0);
+        intent.putExtra("stateVal", -1);
 
 
         startActivity(intent);

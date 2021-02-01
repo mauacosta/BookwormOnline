@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.pruebafirebase.BookHistory;
 import com.example.pruebafirebase.HomeActivity;
 import com.example.pruebafirebase.MainActivity;
 import com.example.pruebafirebase.R;
@@ -27,7 +28,7 @@ public class SettingsFragment extends Fragment {
     private static final String KEY_NAME = "nombre";
     private SettingsViewModel settingsViewModel;
     EditText nombre;
-    Button boton, botonLogout;
+    Button boton, botonLogout, botonHistory;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         settingsViewModel = new ViewModelProvider(this).get(SettingsViewModel.class);
@@ -37,6 +38,7 @@ public class SettingsFragment extends Fragment {
         nombre = root.findViewById(R.id.etChangeName);
         boton = root.findViewById(R.id.btnChangeName);
         botonLogout = root.findViewById(R.id.btnLogout);
+        botonHistory = root.findViewById(R.id.btnBookHistory);
 
         prefs = getActivity().getSharedPreferences(ARCHIVO_PREFS, Context.MODE_PRIVATE);
 
@@ -56,6 +58,14 @@ public class SettingsFragment extends Fragment {
                 FirebaseAuth.getInstance().signOut();
 
                 Intent i = new Intent(getActivity(), MainActivity.class);
+                startActivity(i);
+            }
+        });
+
+        botonHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity(), BookHistory.class);
                 startActivity(i);
             }
         });

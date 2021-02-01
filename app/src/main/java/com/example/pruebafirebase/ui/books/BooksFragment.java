@@ -69,41 +69,6 @@ public class BooksFragment extends Fragment implements View.OnClickListener{
         recyclerView.setAdapter(adapter);
         //books = db.search(mailStr);
 
-        /*if(0 < books.size()){
-            title.setText("Reading now");
-            layout1 = root.findViewById(R.id.BookLayout1);
-            layout1.setVisibility(View.VISIBLE);
-            title1 = root.findViewById(R.id.tvBook1);
-            author1 = root.findViewById(R.id.tvAuthor1);
-            year1 = root.findViewById(R.id.tvYear1);
-            title1.setText(books.get(0).title);
-            author1.setText(books.get(0).author);
-            year1.setText(books.get(0).year);
-        }
-
-        if(1 < books.size()){
-            layout2 = root.findViewById(R.id.BookLayout2);
-            layout2.setVisibility(View.VISIBLE);
-            title2 = root.findViewById(R.id.tvBook2);
-            author2 = root.findViewById(R.id.tvAuthor2);
-            year2 = root.findViewById(R.id.tvYear2);
-            title2.setText(books.get(1).title);
-            author2.setText(books.get(1).author);
-            year2.setText(books.get(1).year);
-        }
-
-        if(2 < books.size()){
-            layout3 = root.findViewById(R.id.BookLayout3);
-            layout3.setVisibility(View.VISIBLE);
-            title3 = root.findViewById(R.id.tvBook3);
-            author3 = root.findViewById(R.id.tvAuthor3);
-            year3 = root.findViewById(R.id.tvYear3);
-            title3.setText(books.get(2).title);
-            author3.setText(books.get(2).author);
-            year3.setText(books.get(2).year);
-        }
-
-         */
 
         return root;
     }

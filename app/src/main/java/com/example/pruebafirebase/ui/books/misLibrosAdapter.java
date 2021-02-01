@@ -27,12 +27,12 @@ import com.example.pruebafirebase.R;
 
 import java.util.ArrayList;
 
-public class misLibrosAdapter extends RecyclerView.Adapter<misLibrosAdapter.SearchBookViewHolder> {
+public class misLibrosAdapter extends RecyclerView.Adapter<misLibrosAdapter.MisLibrosViewHolder> {
 
-    public class SearchBookViewHolder extends RecyclerView.ViewHolder{
+    public class MisLibrosViewHolder extends RecyclerView.ViewHolder{
         public TextView name, author, year;
 
-        public SearchBookViewHolder(@NonNull View itemView) {
+        public MisLibrosViewHolder(@NonNull View itemView) {
             super(itemView);
             name = (TextView) itemView.findViewById(R.id.searchName);
             author = (TextView) itemView.findViewById(R.id.searchAuthor);
@@ -50,15 +50,15 @@ public class misLibrosAdapter extends RecyclerView.Adapter<misLibrosAdapter.Sear
 
     @NonNull
     @Override
-    public SearchBookViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public MisLibrosViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = (View) LayoutInflater.from(parent.getContext()).inflate(R.layout.my_book_row, parent, false);
         v.setOnClickListener(listener);
-        SearchBookViewHolder sbVH = new SearchBookViewHolder(v);
+        MisLibrosViewHolder sbVH = new MisLibrosViewHolder(v);
         return sbVH;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull SearchBookViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MisLibrosViewHolder holder, int position) {
         holder.name.setText(books.get(position).title);
         holder.author.setText(books.get(position).author);
         holder.year.setText(books.get(position).year);

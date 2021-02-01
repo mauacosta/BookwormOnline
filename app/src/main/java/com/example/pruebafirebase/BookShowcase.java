@@ -68,9 +68,9 @@ public class BookShowcase extends AppCompatActivity {
         amazonId = extras.getString("AmazonId");
         stateVal = extras.getInt("stateVal");
 
-        if(stateVal == 1){
+        if((stateVal >= 0)){
             bookButton.setVisibility(View.GONE);
-        }else if(stateVal == 0){
+        }else{
             stateTV.setVisibility(View.GONE);
         }
 
@@ -95,7 +95,7 @@ public class BookShowcase extends AppCompatActivity {
         if(!imgId.equals("-")){
             try {
                 GetContent getBitmap = new GetContent();
-                Bitmap bitmap = getBitmap.execute("http://covers.openlibrary.org/b/id/" + imgId + "-M.jpg").get();
+                Bitmap bitmap = getBitmap.execute("http://covers.openlibrary.org/b/id/" + imgId + ".jpg").get();
                 bookImg.setImageBitmap(bitmap);
             } catch (Exception e) {
                 e.printStackTrace();
