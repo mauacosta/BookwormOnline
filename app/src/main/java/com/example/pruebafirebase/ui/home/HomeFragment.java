@@ -4,12 +4,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -21,6 +23,14 @@ import com.example.pruebafirebase.BookShowcase;
 import com.example.pruebafirebase.MainAdapter;
 import com.example.pruebafirebase.R;
 import com.example.pruebafirebase.ui.books.misLibrosAdapter;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 
 import java.util.ArrayList;
 
@@ -39,6 +49,11 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     private RecyclerView recyclerView;
     ArrayList<Book> books;
 
+    private String vUserId;
+    private FirebaseDatabase database;
+    private FirebaseAuth mAuth;
+    DatabaseReference mRef;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         homeViewModel =
@@ -49,12 +64,58 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         mailStr = prefs.getString(KEY_MAIL, "Reader");
         welcomeText.setText("Welcome " + prefs.getString(KEY_NAME, mailStr));
 
-        books = new ArrayList<>();
+        mAuth = FirebaseAuth.getInstance();
+        database = FirebaseDatabase.getInstance();
 
-        books.add(new Book("12 Rules for Life", "Jordan B. Peterson", "2016", "8131760", "PHILOSOPHY / Social", "-", "-", 2));
+        FirebaseUser user = mAuth.getCurrentUser();
+
+        vUserId = user.getUid();
+
+        books = new ArrayList<>();
+        MainAdapter adapter = new MainAdapter(books, this);
+
+
+        mRef = database.getReference("Usuarios/" + vUserId + "/misBooks");
+        Query refWithQuery = mRef.orderByChild("state").equalTo(2);
+        refWithQuery.addChildEventListener(new ChildEventListener() {
+
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                Book book = snapshot.getValue(Book.class);
+                books.add(book);
+                Log.wtf("HOLA", book.title);
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                Book book = snapshot.getValue(Book.class);
+                books.add(book);
+                Log.wtf("HOLA", book.title);
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w("FIREBASE ERROR", "Failed to read value.", error.toException());
+            }
+        });
+
+
         recyclerView = root.findViewById(R.id.recyclerMain);
 
-        MainAdapter adapter = new MainAdapter(books, this);
+
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
         llm.setOrientation(GridLayoutManager.VERTICAL);
 

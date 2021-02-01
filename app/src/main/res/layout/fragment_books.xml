@@ -34,7 +34,7 @@
                 android:layout_width="280dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat_bold"
-                android:text="My Books"
+                android:text="Reading next"
                 android:textColor="@color/lighter_black"
                 android:textSize="40sp"
                 app:layout_constraintBottom_toTopOf="@+id/recyclerViewMyBooks"

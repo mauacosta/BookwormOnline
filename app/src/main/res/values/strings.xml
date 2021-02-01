@@ -3,4 +3,11 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">My Books</string>
     <string name="title_settings">Settings</string>
+
+    <string-array name="statusChoice">
+        <item>To Read</item>
+        <item>Reading</item>
+        <item>Done Reading</item>
+        <item>Delete</item>
+    </string-array>
 </resources>

@@ -48,14 +48,11 @@ public class BookHistory extends AppCompatActivity implements View.OnClickListen
         mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
 
-
         FirebaseUser user = mAuth.getCurrentUser();
-
 
         vUserId = user.getUid();
 
         books = new ArrayList<>();
-
 
         mRef = database.getReference("Usuarios/" + vUserId + "/misBooks");
         Query refWithQuery = mRef.orderByChild("state");
@@ -97,15 +94,12 @@ public class BookHistory extends AppCompatActivity implements View.OnClickListen
             }
         });
 
-
         recyclerView = findViewById(R.id.recyclerViewHistory);
         LinearLayoutManager llm = new LinearLayoutManager(this);
         llm.setOrientation(GridLayoutManager.VERTICAL);
 
         recyclerView.setLayoutManager(llm);
         recyclerView.setAdapter(adapter);
-
-
     }
 
 

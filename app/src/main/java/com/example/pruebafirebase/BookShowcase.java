@@ -11,8 +11,10 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,9 +32,10 @@ public class BookShowcase extends AppCompatActivity {
 
     private String emailStr, title, author, year, subject, imgId, language, state, amazonId;
     private int stateVal;
-    private TextView titleTV, authorTV, yearTV, subjectTV, langTV, stateTV;
+    private TextView titleTV, authorTV, yearTV, subjectTV, langTV, stateTV,amazonTV, stateHint;
+    Spinner spinner;
     private ImageView bookImg;
-    private Button bookButton;
+    private Button bookButton, applyButton;
 
     public SharedPreferences prefs;
     private DbHelper db;
@@ -56,6 +59,10 @@ public class BookShowcase extends AppCompatActivity {
         bookButton = findViewById(R.id.bookBtn);
         stateTV = findViewById(R.id.showState);
         bookImg = findViewById(R.id.showImage);
+        amazonTV = findViewById(R.id.amazonBtn);
+        applyButton = findViewById(R.id.applyBtn);
+        spinner = (Spinner) findViewById(R.id.statusSpinner);
+        stateHint = findViewById(R.id.statusHint);
 
         Bundle extras = getIntent().getExtras();
         title = extras.getString("Title");
@@ -70,8 +77,14 @@ public class BookShowcase extends AppCompatActivity {
 
         if((stateVal >= 0)){
             bookButton.setVisibility(View.GONE);
+            ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.statusChoice, android.R.layout.simple_spinner_item);
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            spinner.setAdapter(adapter);
         }else{
             stateTV.setVisibility(View.GONE);
+            spinner.setVisibility(View.GONE);
+            applyButton.setVisibility(View.GONE);
+            stateHint.setVisibility(View.GONE);
         }
 
         titleTV.setText(title);
@@ -102,6 +115,10 @@ public class BookShowcase extends AppCompatActivity {
             }
         }else{
             Log.wtf("IMAGE", "Image doesn't have cover");
+        }
+
+        if(amazonId.equals("-")){
+            amazonTV.setVisibility(View.GONE);
         }
     }
 
