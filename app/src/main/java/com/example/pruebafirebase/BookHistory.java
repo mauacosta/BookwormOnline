@@ -79,12 +79,12 @@ public class BookHistory extends AppCompatActivity implements View.OnClickListen
 
             @Override
             public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-
+                adapter.notifyDataSetChanged();
             }
 
             @Override
             public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
+                adapter.notifyDataSetChanged();
             }
 
             @Override
@@ -123,10 +123,26 @@ public class BookHistory extends AppCompatActivity implements View.OnClickListen
 
         intent.putExtra("AmazonId", thisBook.amazonId);
 
-        intent.putExtra("state", "To Read");
 
-        intent.putExtra("stateVal", 1);
 
+        intent.putExtra("stateVal", thisBook.state);
+
+        String stateStr;
+        switch(thisBook.state){
+            case 0:
+                stateStr = "Done Reading";
+                break;
+            case 1:
+                stateStr = "To read";
+                break;
+            case 2:
+                stateStr = "Reading Now";
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + thisBook.state);
+        }
+
+        intent.putExtra("state", stateStr);
         startActivity(intent);
     }
 }

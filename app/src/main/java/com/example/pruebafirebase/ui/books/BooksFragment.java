@@ -42,16 +42,7 @@ import java.util.ArrayList;
 public class BooksFragment extends Fragment implements View.OnClickListener{
 
     private BooksViewModel booksViewModel;
-    TextView title;
     private RecyclerView recyclerView;
-    //TextView title, title1, title2, title3, author1, author2, author3, year1, year2,year3;
-
-    //ConstraintLayout layout1, layout2, layout3;
-
-    DbHelper db;
-    public SharedPreferences prefs;
-    private static final String ARCHIVO_PREFS = "misPrefs";
-    private static final String KEY_MAIL = "email";
     ArrayList<Book> books;
 
     private String vUserId;
@@ -66,14 +57,7 @@ public class BooksFragment extends Fragment implements View.OnClickListener{
                 new ViewModelProvider(this).get(BooksViewModel.class);
 
         View root = inflater.inflate(R.layout.fragment_books, container, false);
-        DbHelper db = new DbHelper(this.getActivity());
-        prefs = getActivity().getSharedPreferences(ARCHIVO_PREFS, Context.MODE_PRIVATE);
-        String mailStr = prefs.getString(KEY_MAIL, "@");
 
-        title = root.findViewById(R.id.tvReadingTitle);
-        //title.setText("Add your first book -->");
-
-        //books = db.search(mailStr);
 
         mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
@@ -133,7 +117,6 @@ public class BooksFragment extends Fragment implements View.OnClickListener{
 
         recyclerView.setLayoutManager(llm);
         recyclerView.setAdapter(adapter);
-        //books = db.search(mailStr);
 
 
         return root;
@@ -159,9 +142,25 @@ public class BooksFragment extends Fragment implements View.OnClickListener{
 
         intent.putExtra("AmazonId", thisBook.amazonId);
 
-        intent.putExtra("state", "To Read");
 
-        intent.putExtra("stateVal", 1);
+        intent.putExtra("stateVal", thisBook.state);
+
+        String stateStr;
+        switch(thisBook.state){
+            case 0:
+                stateStr = "Done Reading";
+                break;
+            case 1:
+                stateStr = "To read";
+                break;
+            case 2:
+                stateStr = "Reading Now";
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + thisBook.state);
+        }
+
+        intent.putExtra("state", stateStr);
 
         startActivity(intent);
     }

@@ -122,6 +122,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         recyclerView.setLayoutManager(llm);
         recyclerView.setAdapter(adapter);
 
+        if(books.isEmpty()){
+            welcomeText.setText("Welcome " + prefs.getString(KEY_NAME, mailStr) + ". Add your first Book!");
+        }
         return root;
     }
 
@@ -145,9 +148,24 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
         intent.putExtra("AmazonId", thisBook.amazonId);
 
-        intent.putExtra("state", "To Read");
+        intent.putExtra("stateVal", thisBook.state);
 
-        intent.putExtra("stateVal", 1);
+        String stateStr;
+        switch(thisBook.state){
+            case 0:
+                stateStr = "Done Reading";
+                break;
+            case 1:
+                stateStr = "To read";
+                break;
+            case 2:
+                stateStr = "Reading Now";
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + thisBook.state);
+        }
+
+        intent.putExtra("state", stateStr);
 
         startActivity(intent);
     }

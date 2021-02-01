@@ -84,7 +84,6 @@ public class HomeActivity extends AppCompatActivity {
                 SharedPreferences.Editor editor = prefs.edit();
                 editor.putString(KEY_NAME, vNombre);
                 editor.commit();
-                //Toast.makeText(HomeActivity.this, "NUEVO VALOR: " + vNombre, Toast.LENGTH_SHORT).show();
             }
 
             @Override

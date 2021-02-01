@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -139,6 +140,65 @@ public class BookShowcase extends AppCompatActivity {
         Toast.makeText(this, libro.title + " Added to *Books To Read*", Toast.LENGTH_SHORT).show();
         Intent i = new Intent(this, HomeActivity.class);
         startActivity(i);
+    }
+
+    public void changeState(View v){
+        int stateSelected = spinner.getSelectedItemPosition();
+        Book libro = new Book(title, author, year, imgId, subject, language, amazonId, 1);
+        if(stateSelected == stateVal){
+            Toast.makeText(this, "Saved without changes", Toast.LENGTH_SHORT).show();
+        }else {
+            libro.state = stateSelected;
+            ref = database.getReference("Usuarios/"+ vUserId);
+            ref.child("misBooks/" + title).setValue(libro);
+            switch (stateSelected) {
+                case 0:
+                    Toast.makeText(this, "Done Reading " + title, Toast.LENGTH_SHORT).show();
+                    break;
+                case 1:
+                    Toast.makeText(this, "Reading next " + title, Toast.LENGTH_SHORT).show();
+                    break;
+                case 2:
+                    Toast.makeText(this, "Reading now " + title, Toast.LENGTH_SHORT).show();
+                    break;
+                case 3:
+                    ref.child("misBooks/" + title).removeValue();
+                    Toast.makeText(this, "Deleting " + title, Toast.LENGTH_SHORT).show();
+                    break;
+                default:
+                    throw new IllegalStateException("Unexpected value: " + stateSelected);
+            }
+            Intent i = new Intent(this, HomeActivity.class);
+            startActivity(i);
+        }
+    }
+
+    public void goToAmazon(View v){
+        Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("http://amazon.com/dp/" + amazonId));
+        startActivity(i);
+    }
+
+    public void shareInMessage(View v){
+        String message;
+        switch (stateVal) {
+            case 0:
+                message = "I've done reading the book " + title + " on BookWorm!";
+                break;
+            case 1:
+                message = "I am reading next the book " + title + " on BookWorm!";
+                break;
+            case 2:
+                message = "I am reading the book " + title + " on BookWorm!";
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + stateVal);
+        }
+        Intent i = new Intent();
+        i.setAction(Intent.ACTION_SEND);
+        i.putExtra(Intent.EXTRA_TEXT, message);
+        i.setType("text/plain");
+        Intent shareIntent = Intent.createChooser(i, null);
+        startActivity(shareIntent);
     }
 
     class GetContent extends AsyncTask<String, Void, Bitmap> {
