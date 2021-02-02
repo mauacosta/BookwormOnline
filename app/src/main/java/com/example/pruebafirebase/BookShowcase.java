@@ -31,17 +31,12 @@ import java.net.URL;
 
 public class BookShowcase extends AppCompatActivity {
 
-    private String emailStr, title, author, year, subject, imgId, language, state, amazonId;
+    private String title, author, year, subject, imgId, language, state, amazonId;
     private int stateVal;
     private TextView titleTV, authorTV, yearTV, subjectTV, langTV, stateTV,amazonTV, stateHint;
     Spinner spinner;
     private ImageView bookImg;
     private Button bookButton, applyButton;
-
-    public SharedPreferences prefs;
-    private DbHelper db;
-    private static final String ARCHIVO_PREFS = "misPrefs";
-    private static final String KEY_MAIL = "email";
 
     private String vUserId;
     public FirebaseDatabase database;
@@ -96,10 +91,6 @@ public class BookShowcase extends AppCompatActivity {
         bookButton.setText("Add book");
         stateTV.setText("State: " + state);
 
-        db = new DbHelper(this);
-        prefs = getSharedPreferences(ARCHIVO_PREFS, Context.MODE_PRIVATE);
-        emailStr =  prefs.getString(KEY_MAIL, "@");
-
         mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
@@ -123,12 +114,6 @@ public class BookShowcase extends AppCompatActivity {
         }
     }
 
-    public void addBook(View v){
-        db.save(emailStr, title, author, year, imgId, subject, language, amazonId);
-        Intent i = new Intent(this, HomeActivity.class);
-        Toast.makeText(this, title + " Added", Toast.LENGTH_SHORT).show();
-        startActivity(i);
-    }
 
     public void writeBook(View v){
 

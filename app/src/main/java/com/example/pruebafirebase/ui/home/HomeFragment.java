@@ -84,6 +84,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 Book book = snapshot.getValue(Book.class);
                 books.add(book);
                 Log.wtf("HOLA", book.title);
+                welcomeText.setText("Welcome " + prefs.getString(KEY_NAME, mailStr));
                 adapter.notifyDataSetChanged();
             }
 
@@ -92,6 +93,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 Book book = snapshot.getValue(Book.class);
                 books.add(book);
                 Log.wtf("HOLA", book.title);
+                welcomeText.setText("Welcome " + prefs.getString(KEY_NAME, mailStr));
                 adapter.notifyDataSetChanged();
             }
 
@@ -123,7 +125,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         recyclerView.setAdapter(adapter);
 
         if(books.isEmpty()){
-            welcomeText.setText("Welcome " + prefs.getString(KEY_NAME, mailStr) + ". Add your first Book!");
+            welcomeText.setText("Welcome " + prefs.getString(KEY_NAME, mailStr) + ". Add Books!");
         }
         return root;
     }

@@ -15,6 +15,7 @@ import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -117,6 +118,7 @@ public class SearchBook extends AppCompatActivity implements Handler.Callback, V
             }
         }catch(Exception e){
             e.printStackTrace();
+            Toast.makeText(this, "Trouble looking for this book. Try again later!", Toast.LENGTH_SHORT).show();
         }
         return true;
     }

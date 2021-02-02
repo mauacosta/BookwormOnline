@@ -22,7 +22,6 @@ public class AddBook extends AppCompatActivity {
     private static final String KEY_MAIL = "email";
     private EditText etTitle, etAuthor, etYear;
     String emailStr;
-    private DbHelper db;
 
     private String vUserId;
     public FirebaseDatabase database;
@@ -35,7 +34,6 @@ public class AddBook extends AppCompatActivity {
         setContentView(R.layout.activity_add_book);
         prefs = getSharedPreferences(ARCHIVO_PREFS, Context.MODE_PRIVATE);
         emailStr =  prefs.getString(KEY_MAIL, "@");
-        db = new DbHelper(this);
 
         mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
@@ -43,19 +41,6 @@ public class AddBook extends AppCompatActivity {
 
         vUserId = user.getUid();
 
-    }
-
-    public void saveBook(View view){
-        etTitle = findViewById(R.id.etBookName);
-        etAuthor = findViewById(R.id.etAuthorName);
-        etYear = findViewById(R.id.etYear);
-        String strTitle = etTitle.getText().toString();
-        String strAuthor = etAuthor.getText().toString();
-        String strYear = etYear.getText().toString();
-        db.save(emailStr, strTitle, strAuthor, strYear, "-", "-", "-", "-");
-        Toast.makeText(AddBook.this, strTitle + " Agregado", Toast.LENGTH_SHORT).show();
-        Intent i = new Intent(AddBook.this, HomeActivity.class);
-        startActivity(i);
     }
 
 

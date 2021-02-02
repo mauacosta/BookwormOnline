@@ -37,7 +37,6 @@ public class SearchBookAdapter extends RecyclerView.Adapter<SearchBookAdapter.Se
     private ArrayList<Book> books;
     private View.OnClickListener listener;
     public SharedPreferences prefs;
-    private DbHelper db;
     private static final String ARCHIVO_PREFS = "misPrefs";
     private static final String KEY_MAIL = "email";
     private String emailStr;
@@ -59,7 +58,6 @@ public class SearchBookAdapter extends RecyclerView.Adapter<SearchBookAdapter.Se
     public SearchBookViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = (View) LayoutInflater.from(parent.getContext()).inflate(R.layout.search_element, parent, false);
         context = parent.getContext();
-        db = new DbHelper(context);
         prefs = parent.getContext().getSharedPreferences(ARCHIVO_PREFS, Context.MODE_PRIVATE);
         emailStr =  prefs.getString(KEY_MAIL, "@");
         v.setOnClickListener(listener);
@@ -79,8 +77,6 @@ public class SearchBookAdapter extends RecyclerView.Adapter<SearchBookAdapter.Se
         holder.addBook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //db.save(emailStr, books.get(position).title, books.get(position).author, books.get(position).year, books.get(position).imgId,books.get(position).subject, books.get(position).language, books.get(position).amazonId);
-
                 Book libro = new Book(books.get(position).title, books.get(position).author, books.get(position).year, books.get(position).imgId, books.get(position).subject,books.get(position).language, books.get(position).amazonId, 1);
 
                 ref = database.getReference("Usuarios/"+ vUserId);
