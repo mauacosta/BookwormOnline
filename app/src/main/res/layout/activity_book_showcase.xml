@@ -16,7 +16,7 @@
         android:id="@+id/showTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="48sp"
+        android:textSize="32sp"
         android:textColor="@color/lighter_black"
         android:fontFamily="@font/merriweather_bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -41,7 +41,7 @@
         android:text="Book Author"
         android:textColor="@color/lighter_black"
         android:fontFamily="@font/montserrat_bold"
-        android:textSize="24sp"
+        android:textSize="16sp"
         android:layout_marginTop="4dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/showImage"/>
@@ -53,7 +53,7 @@
         android:text="Year"
         android:fontFamily="@font/montserrat"
         android:layout_marginLeft="8dp"
-        android:textSize="18sp"
+        android:textSize="14sp"
         app:layout_constraintStart_toEndOf="@id/showAuthor"
         app:layout_constraintBottom_toBottomOf="@id/showAuthor"/>
 
@@ -64,7 +64,7 @@
         android:text="Book Subject"
         android:fontFamily="@font/montserrat"
         android:layout_marginTop="8dp"
-        android:textSize="16sp"
+        android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/showYear"/>
 
@@ -75,7 +75,7 @@
         android:text="Book Language"
         android:fontFamily="@font/montserrat"
         android:layout_marginTop="8dp"
-        android:textSize="16sp"
+        android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/showSubject"/>
 
@@ -86,7 +86,7 @@
         android:text="Reading Now"
         android:fontFamily="@font/montserrat"
         android:layout_marginTop="8dp"
-        android:textSize="16sp"
+        android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/showLanguage"/>
 
@@ -147,7 +147,7 @@
         android:onClick="shareInMessage"
         android:textSize="16sp"
         android:text="Share as Text Message"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         app:layout_constraintTop_toBottomOf="@id/amazonBtn"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

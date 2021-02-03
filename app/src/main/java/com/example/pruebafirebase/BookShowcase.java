@@ -33,7 +33,7 @@ public class BookShowcase extends AppCompatActivity {
 
     private String title, author, year, subject, imgId, language, state, amazonId;
     private int stateVal;
-    private TextView titleTV, authorTV, yearTV, subjectTV, langTV, stateTV,amazonTV, stateHint;
+    private TextView titleTV, authorTV, yearTV, subjectTV, langTV, stateTV,amazonTV, stateHint, messageBtn;
     Spinner spinner;
     private ImageView bookImg;
     private Button bookButton, applyButton;
@@ -59,6 +59,7 @@ public class BookShowcase extends AppCompatActivity {
         applyButton = findViewById(R.id.applyBtn);
         spinner = (Spinner) findViewById(R.id.statusSpinner);
         stateHint = findViewById(R.id.statusHint);
+        messageBtn = findViewById(R.id.shareBtn);
 
         Bundle extras = getIntent().getExtras();
         title = extras.getString("Title");
@@ -81,6 +82,8 @@ public class BookShowcase extends AppCompatActivity {
             spinner.setVisibility(View.GONE);
             applyButton.setVisibility(View.GONE);
             stateHint.setVisibility(View.GONE);
+            amazonTV.setVisibility(View.GONE);
+            messageBtn.setVisibility(View.GONE);
         }
 
         titleTV.setText(title);
@@ -116,7 +119,6 @@ public class BookShowcase extends AppCompatActivity {
 
 
     public void writeBook(View v){
-
         Book libro = new Book(title, author, year, imgId, subject, language, amazonId, 1);
 
         ref = database.getReference("Usuarios/"+ vUserId);
@@ -151,7 +153,8 @@ public class BookShowcase extends AppCompatActivity {
                     Toast.makeText(this, "Deleting " + title, Toast.LENGTH_SHORT).show();
                     break;
                 default:
-                    throw new IllegalStateException("Unexpected value: " + stateSelected);
+                    Toast.makeText(this, "Add Book first", Toast.LENGTH_SHORT).show();
+                    break;
             }
             Intent i = new Intent(this, HomeActivity.class);
             startActivity(i);
@@ -176,7 +179,8 @@ public class BookShowcase extends AppCompatActivity {
                 message = "I am reading the book " + title + " on BookWorm!";
                 break;
             default:
-                throw new IllegalStateException("Unexpected value: " + stateVal);
+                message = "Add your book first to send a message";
+                break;
         }
         Intent i = new Intent();
         i.setAction(Intent.ACTION_SEND);
