@@ -47,7 +47,7 @@ public class SearchBook extends AppCompatActivity implements Handler.Callback, V
         EditText searchInput = findViewById(R.id.searchET);
         String query = searchInput.getText().toString();
         String querySendable = query.replaceAll("\\s", "+");
-        SearchBookRequest request = new SearchBookRequest("http://openlibrary.org/search.json?q=" + querySendable + "&page=1", handler);
+        SearchBookRequest request = new SearchBookRequest("http://openlibrary.org/search.json?q=" + querySendable + "&page=1", handler, this);
         request.start();
     }
 

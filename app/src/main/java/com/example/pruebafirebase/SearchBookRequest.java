@@ -1,7 +1,10 @@
 package com.example.pruebafirebase;
 
+import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
+import android.view.ViewParent;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -15,10 +18,12 @@ import java.net.URL;
 public class SearchBookRequest extends Thread {
     private String url;
     private Handler handler;
+    private Context context;
 
-    public SearchBookRequest(String url, Handler handler) {
+    public SearchBookRequest(String url, Handler handler, Context context) {
         this.url = url;
         this.handler = handler;
+        this.context = context;
     }
 
     public void run() {
@@ -52,6 +57,7 @@ public class SearchBookRequest extends Thread {
             }
 
         } catch (Exception e) {
+            Toast.makeText(context, "Problem with the book, try later.", Toast.LENGTH_SHORT).show();
             e.printStackTrace();
         }
 
