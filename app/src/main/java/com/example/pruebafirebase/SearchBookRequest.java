@@ -57,7 +57,6 @@ public class SearchBookRequest extends Thread {
             }
 
         } catch (Exception e) {
-            Toast.makeText(context, "Problem with the book, try later.", Toast.LENGTH_SHORT).show();
             e.printStackTrace();
         }
 

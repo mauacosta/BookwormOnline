@@ -167,7 +167,7 @@ public class BookShowcase extends AppCompatActivity {
         String message;
         switch (stateVal) {
             case 0:
-                message = "I've done reading the book " + title + " on BookWorm!";
+                message = "I am done reading the book " + title + " on BookWorm!";
                 break;
             case 1:
                 message = "I am reading next the book " + title + " on BookWorm!";
